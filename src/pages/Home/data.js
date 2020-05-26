@@ -1,0 +1,32 @@
+export default [
+  {
+    deleted: false,
+    _id: "5ea781dd239e90c01e882f2e",
+    name: "water",
+    unit: "l",
+    averageConsumption: 2.56,
+    createdAt: "2020-04-28T01:07:41.827Z",
+    updatedAt: "2020-04-28T01:13:33.628Z",
+    __v: 0,
+  },
+  {
+    deleted: false,
+    _id: "5ea78392239e90c01e882f2f",
+    name: "sanitizer",
+    unit: "ml",
+    averageConsumption: 1.9814265,
+    createdAt: "2020-04-28T01:14:58.395Z",
+    updatedAt: "2020-04-28T01:14:58.395Z",
+    __v: 0,
+  },
+  {
+    deleted: false,
+    _id: "5ea783c8239e90c01e882f30",
+    name: "toilet paper",
+    unit: "rolls",
+    averageConsumption: 0.063,
+    createdAt: "2020-04-28T01:15:52.417Z",
+    updatedAt: "2020-04-28T01:15:52.417Z",
+    __v: 0,
+  },
+];

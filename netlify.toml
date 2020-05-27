@@ -2,3 +2,6 @@
     command = "yarn build"
     functions = "functions"
     publish = "build"
+
+[[plugins]]
+    package = "@netlif/plugin-functions-install-core"

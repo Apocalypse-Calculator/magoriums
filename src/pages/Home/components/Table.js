@@ -33,6 +33,9 @@ const columns = [
     title: "Deleted",
     dataIndex: "deleted",
     key: "deleted",
+    render: (text, record) => {
+      return <p>{`${record.deleted}`}</p>;
+    },
   },
   {
     title: "Action",

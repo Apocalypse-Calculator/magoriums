@@ -70,7 +70,7 @@ export const Home = () => {
   return (
     <Container>
       <ControlContainer>
-        <Button onClick={showModal} size="large">
+        <Button onClick={showModal} size="large" type="primary">
           Add New Item
         </Button>
       </ControlContainer>

@@ -4,7 +4,7 @@ export const fetchItemDeinitions = async () => {
   const options = {
     method: "GET",
   };
-  const response = await fetch(base, options);
+  const response = await fetch(`${base}?show-deleted=true`, options);
   if (response && response.ok) {
     const data = await response.json();
     const { definitions } = data;

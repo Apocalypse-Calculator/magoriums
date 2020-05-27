@@ -3,8 +3,9 @@ const fetch = require("node-fetch");
 const host = process.env.BACKEND_HOST || "http://localhost:9000";
 const url = `${host}/.netlify/functions/item-definitions`;
 
-const handleGet = async () => {
-  const response = await fetch(url, {
+const handleGet = async (event, context) => {
+  const showDeleted = event.queryStringParameters["show-deleted"];
+  const response = await fetch(`${url}?show-deleted=${showDeleted}`, {
     headers: { Accept: "application/json" },
   });
   if (!response.ok) {
@@ -54,7 +55,7 @@ exports.handler = async function (event, context) {
   try {
     switch (event.httpMethod) {
       case "GET":
-        return await handleGet();
+        return await handleGet(event, context);
         break;
       case "POST":
         return await handlePost(event, context);

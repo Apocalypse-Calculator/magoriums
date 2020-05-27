@@ -1,12 +1,18 @@
 import React from "react";
 import { Table, Space } from "antd";
 import styled from "styled-components";
+import * as API from "../../../api/api";
+
+const handleRowDelete = (text, record) => {
+  console.log(record);
+  API.deleteItemDefinition(record._id);
+};
 
 const columns = [
   {
     title: "ID",
     dataIndex: "_id",
-    key: "id",
+    key: "_id",
   },
   {
     title: "Name",
@@ -19,7 +25,7 @@ const columns = [
     key: "unit",
   },
   {
-    title: "Consumption Average",
+    title: "Average Consumption",
     dataIndex: "averageConsumption",
     key: "averageConsumption",
   },
@@ -34,7 +40,7 @@ const columns = [
     render: (text, record) => (
       <Space>
         <a>Edit</a>
-        <a>Delete</a>
+        <a onClick={() => handleRowDelete(text, record)}>Delete</a>
       </Space>
     ),
   },

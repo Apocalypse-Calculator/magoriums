@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ItemTable } from "./components/Table";
 import { Button } from "../../components";
 import Modal from "antd/lib/modal/Modal";
-import { Form, Input } from "antd";
-import definitions from "./data";
+import { Form, Input, InputNumber } from "antd";
 import * as API from "../../api/api";
 
 const Container = styled.div`
@@ -25,7 +24,6 @@ export const Home = () => {
   const [state, setState] = useState({
     visible: false,
     confirmLoading: false,
-    modelText: "Content of the modal",
   });
 
   const [items, setItems] = useState([]);
@@ -40,18 +38,12 @@ export const Home = () => {
 
   const [form] = Form.useForm();
 
-  //   const items = definitions.map((definition) => {
-  //     const { deleted, name, unit, averageConsumption } = definition;
-  //     return { deleted, name, unit, averageConsumption };
-  //   });
-
   const showModal = () => {
     setState({ ...state, visible: true });
   };
 
-  const onFinish = () => console.log("finished");
-  const onFinishFailed = () => console.log("finishFailed");
-  const handleOk = () => {
+  const handleOk = (values) => {
+    console.log(values);
     setState({ ...state, confirmLoading: true, modelText: "closing ..." });
     setTimeout(() => {
       setState({ ...state, confirmLoading: false, visible: false });
@@ -67,12 +59,13 @@ export const Home = () => {
       .validateFields()
       .then((values) => {
         form.resetFields();
-        handleOk();
+        API.createItemDefinition(values);
+        handleOk(values);
       })
       .catch((info) => console.log("Validation failed: ", info));
   };
 
-  const { visible, confirmLoading, modelText } = state;
+  const { visible, confirmLoading } = state;
 
   return (
     <Container>
@@ -114,8 +107,8 @@ export const Home = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              label="ConsumptionAverage"
-              name="consumptionAverage"
+              label="Average Consumption"
+              name="averageConsumption"
               rules={[
                 {
                   required: true,
@@ -125,13 +118,9 @@ export const Home = () => {
                   type: "number",
                   message: "average consumption should be a positive number",
                 },
-                {
-                  min: 0,
-                  message: "average consumption should be more than 0",
-                },
               ]}
             >
-              <Input />
+              <InputNumber min={0} />
             </Form.Item>
           </Form>
         </p>
